@@ -1,22 +1,6 @@
 classdef DD-CMOEA < ALGORITHM
 % <multi> <real/integer/label/binary/permutation> <constrained>
-% Constrained evolutionary multitasking with global and local auxiliary tasks
 
-%------------------------------- Reference --------------------------------
-% K. Qiao, J. Liang, Z. Liu, K. Yu, C. Yue, and B. Qu, Evolutionary
-% multitasking with global and local auxiliary tasks for constrained
-% multi-objective optimization, IEEE/CAA Journal of Automatica Sinica,
-% 2023, 10(10): 1951-1964.
-%------------------------------- Copyright --------------------------------
-% Copyright (c) 2023 BIMK Group. You are free to use the PlatEMO for
-% research purposes. All publications which use this platform or any code
-% in the platform should acknowledge the use of "PlatEMO" and reference "Ye
-% Tian, Ran Cheng, Xingyi Zhang, and Yaochu Jin, PlatEMO: A MATLAB platform
-% for evolutionary multi-objective optimization [educational forum], IEEE
-% Computational Intelligence MaOperatorGAzine, 2017, 12(4): 73-87".
-%--------------------------------------------------------------------------
-
-% This function is written by Kangjia Qiao (email: qiaokangjia@yeah.net)
 
     methods
         function main(Algorithm,Problem)
@@ -148,7 +132,7 @@ classdef DD-CMOEA < ALGORITHM
                    [Population1,~] = EnvironmentalSelection([Population1,Offspring1,Offspring2],Problem.N,true);
                else
                    % Adaptive constraint search boundary
-                   [Population1,~] = EnvironmentalSelection_LAT([Population1,Offspring1,Offspring2,arch],Problem.N,VAR0);
+                   [Population1,~] = EnvironmentalSelection_VAR([Population1,Offspring1,Offspring2,arch],Problem.N,VAR0);
                    cons = Offspring1.cons;
                    cons(cons<0) = 0;
                    cons = sum(cons,2);
